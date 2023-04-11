@@ -196,8 +196,9 @@ class LinkedList:
 		if not found:
 			print(f'해당하는 원소가 없습니다.')
 
-	def traverse_all(self): # dummy가 출력됨 -> 보완 필요
-		current = self.head
+	# traverse_all 메소드
+	def traverse_all(self): 
+		current = self.head.next
 		result = 'head'
 		while current is not None:
 			result += f' -> ({current.data})'

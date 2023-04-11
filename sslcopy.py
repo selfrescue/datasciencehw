@@ -137,8 +137,8 @@ class LinkedList:
 		return self.num_of_data 
 	
 	# traverse_all 메소드
-	def traverse_all(self): # dummy가 출력됨 -> 보완 필요
-		current = self.head
+	def traverse_all(self): 
+		current = self.head.next
 		result = 'head'
 		while current is not None:
 			result += f' -> ({current.data})'
