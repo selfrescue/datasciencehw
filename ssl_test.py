@@ -24,7 +24,6 @@ class LinkedList:
 		new_node = Node(data)
 		self.tail.next = new_node
 		self.tail = new_node
-
 		self.num_of_data += 1
 
 	# delete 메소드 (delete - current 노드 삭제, 인접 노드의 current, next 변경, 데이터 개수 변경)
@@ -66,3 +65,27 @@ class LinkedList:
 	# size 메소드
 	def size(self):
 		return self.num_of_data 
+	
+	def insert_at(self, position, new_data):
+		if position <= 0:
+			print("Error: position은 0 이하가 될 수 없음!")
+			return
+
+		if position > self.num_of_data:
+			self.append(new_data)
+			return
+
+		new_node = Node(new_data)
+
+		self.current = self.head
+		self.before = None
+		for _ in range(position):
+			self.before = self.current
+			self.current = self.current.next
+
+		self.before.next = new_node
+		new_node.next = self.current
+
+		self.num_of_data += 1
+
+
