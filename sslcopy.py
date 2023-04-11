@@ -47,11 +47,7 @@ class LinkedList:
 		new_node.next = self.current
 		self.num_of_data += 1
 
-# 2) insert_at(self, position, new_data)
-# 리스트의 주어진 위치(position)에 new_data를 삽입한다.
-# 이 때, 맨 첫 원소의 위치는 1로 정하며, 0 이하의 position 값이 입력되면 error 문을 출력한다.
-# 만일 position이 현재 리스트의 크기(원소 갯수)보다 크면 맨 마지막에 new_data를 삽입한다.
-
+	# insert_at 메소드
 	def insert_at(self, position, new_data):
 		if position <= 0:
 			print("Error: position은 0 이하가 될 수 없음!")
@@ -89,6 +85,7 @@ class LinkedList:
 
 			return pop_data
     
+	# remove 메소드
 	def remove(self, key):
 		current = self.head
 		prev = None
@@ -138,18 +135,14 @@ class LinkedList:
 	# size 메소드
 	def size(self):
 		return self.num_of_data 
-    
-    # 1) traverse_all 함수 
-    # # head부터 tail까지 각 노드를 순차적으로 탐색하며 각 노드의 data를 print한다.
-    # # 출력 형식:  head -> (100) -> (72) -> (325) -> null
-    """ def traverse_all(self): 
-        data=l_list.first()
-        if data:
-            print(head, end=' -> ')
-        while True: 
-            data = l_list.next()
-            if data:
-                print(data, end=' -> ')
-            else: 
-                break """
+	
+	# traverse_all 메소드
+	def traverse_all(self): # dummy가 출력됨 -> 보완 필요
+		current = self.head
+		result = 'head'
+		while current is not None:
+			result += f' -> ({current.data})'
+			current = current.next
+		result += ' -> null'
+		print(result)
                 

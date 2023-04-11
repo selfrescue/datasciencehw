@@ -1,4 +1,4 @@
-from ssl_test import *
+from sslcopy import *
 
 if __name__ == '__main__':
     l_list = LinkedList()
@@ -9,8 +9,7 @@ if __name__ == '__main__':
     l_list.append(7)
     l_list.append(2)
     l_list.append(11)
-
-
+    
     print('first: ', l_list.first())
     print('next: ', l_list.next())
     print('size: ', l_list.size())
@@ -24,6 +23,7 @@ if __name__ == '__main__':
     print('next: ', l_list.next())
     l_list.insert_at(3, 5)
     l_list.remove(2)
+    l_list.traverse_all()
 
     data = l_list.first()
     if data:
