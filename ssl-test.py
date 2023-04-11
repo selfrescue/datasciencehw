@@ -10,6 +10,7 @@ if __name__ == '__main__':
     l_list.append(2)
     l_list.append(11)
 
+
     print('first: ', l_list.first())
     print('next: ', l_list.next())
     print('size: ', l_list.size())

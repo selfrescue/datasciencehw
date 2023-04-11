@@ -4,7 +4,6 @@ class Node:
 		self.data = data
 		self.next = None
 
-
 # LinkedList 클래스 정의
 class LinkedList:
 
@@ -27,23 +26,53 @@ class LinkedList:
 
 		self.num_of_data += 1
         
-    def insert_at(self, position, data): 
-        new_node = Node(data) # 삽입할 노드 생성
-        
-        if position <= 0:
-            print('error')
-        elif (position > self.num_of_data):
-            self.tail.next = new_node
-            self.tail = new_node
-            self.num_of_data += 1 
-        else: # position을 어떻게 활용할 건지 고민 필요
-            # 해당 위치로 넣기 
-            # 순차대로 뒤로 밀기 
-# 2) insert_at(position, new_data)
-# # 리스트의 주어진 위치(position)에 new_data를 삽입한다.
-# # 이 때, 맨 첫 원소의 위치는 1로 정하며, 0 이하의 position 값이 입력되면 error 문을 출력한다.
-# # 만일 position이 현재 리스트의 크기(원소 갯수)보다 크면 맨 마지막에 new_data를 삽입한다.
+	def insert_at(self, position, new_data):
+		if position < 1:
+			print("Error: position should be 1 or greater.")
+			return
 
+		if position > self.num_of_data:
+			self.append(new_data)
+			return
+
+		new_node = Node(new_data)
+
+		self.current = self.head
+		self.before = None
+		for _ in range(position):
+			self.before = self.current
+			self.current = self.current.next
+
+		self.before.next = new_node
+		new_node.next = self.current
+		self.num_of_data += 1
+
+# 2) insert_at(self, position, new_data)
+# 리스트의 주어진 위치(position)에 new_data를 삽입한다.
+# 이 때, 맨 첫 원소의 위치는 1로 정하며, 0 이하의 position 값이 입력되면 error 문을 출력한다.
+# 만일 position이 현재 리스트의 크기(원소 갯수)보다 크면 맨 마지막에 new_data를 삽입한다.
+
+	def insert_at(self, position, new_data):
+		if position <= 0:
+			print("Error: position은 0 이하가 될 수 없음!")
+			return
+
+		if position > self.num_of_data:
+			self.append(new_data)
+			return
+
+		new_node = Node(new_data)
+
+		self.current = self.head
+		self.before = None
+		for _ in range(position):
+			self.before = self.current
+			self.current = self.current.next
+
+		self.before.next = new_node
+		new_node.next = self.current
+
+		self.num_of_data += 1
 
 	# delete 메소드 (delete - current 노드 삭제, 인접 노드의 current, next 변경, 데이터 개수 변경)
 	def delete(self):
