@@ -89,35 +89,31 @@ class LinkedList:
 
 			return pop_data
     
-    def remove(self, key): 
-        # 맨 앞부터 차례차례 보기 ( 맨 앞 값에서 시작) 
-        self.before = self.head
-        self.current = self.head.next 
-        
-        # 만약 data 값이 key 일 경우 pop 한다
-        if self.current.data == key: 
-            pop_data = self.current.data
+	def remove(self, key):
+		current = self.head
+		prev = None
+		found = False
+		position = 0
+		
+		while current is not None:
+			if current.data == key:
+				found = True
+				print(f'{position+1}번째 원소({key})를 삭제합니다.')
+				if current == self.head:
+					self.head = current.next
+					current = self.head
+				else:
+					prev.next = current.next
+					current = current.next
+					
+			else:
+				prev = current
+				current = current.next
+				position += 1
+		
+		if not found:
+			print(f'해당하는 원소가 없습니다.')
 
-            if self.current is self.tail:
-                self.tail = self.before
-                self.before.next = self.current.next
-                self.current = self.before 
-                self.num_of_data -= 1
-                
-                # 삭제된 값의 인덱스를 리스트로 저장해야 함 
-                
-        # 어떻게 순서대로 넘어갈지 ? 
-        while self.current.next != None: 
-            self.before = self.current
-            self.current = self.current.next
-        
-# 3) remove(key)
-# # 리스트의 원소 가운데 key값과 일치하는 원소를 모두 삭제하고, 리스트를 수정한다.
-# # 이 때, 처리 결과를 다음 예와 같이 출력한다.
-# #* 3번째 원소(key)를 삭제합니다.
-# # * 해당하는 원소가 없습니다.
-        
-        
 	# first 메소드 (search1 - 맨 앞의 노드 검색, before, current 변경)
 	def first(self):
 		# 데이터가 없는 경우 첫번째 노드도 없기 때문에 None 리턴
@@ -146,7 +142,7 @@ class LinkedList:
     # 1) traverse_all 함수 
     # # head부터 tail까지 각 노드를 순차적으로 탐색하며 각 노드의 data를 print한다.
     # # 출력 형식:  head -> (100) -> (72) -> (325) -> null
-    def traverse_all(self): 
+    """ def traverse_all(self): 
         data=l_list.first()
         if data:
             print(head, end=' -> ')
@@ -155,5 +151,5 @@ class LinkedList:
             if data:
                 print(data, end=' -> ')
             else: 
-                break
+                break """
                 
