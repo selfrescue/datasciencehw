@@ -25,27 +25,7 @@ class LinkedList:
 		self.tail = new_node
 
 		self.num_of_data += 1
-        
-	def insert_at(self, position, new_data):
-		if position < 1:
-			print("Error: position should be 1 or greater.")
-			return
-
-		if position > self.num_of_data:
-			self.append(new_data)
-			return
-
-		new_node = Node(new_data)
-
-		self.current = self.head
-		self.before = None
-		for _ in range(position):
-			self.before = self.current
-			self.current = self.current.next
-
-		self.before.next = new_node
-		new_node.next = self.current
-		self.num_of_data += 1
+       
 
 	# insert_at 메소드
 	def insert_at(self, position, new_data):
