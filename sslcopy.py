@@ -29,25 +29,31 @@ class LinkedList:
 
 	# insert_at 메소드
 	def insert_at(self, position, new_data):
+    # 1. position이 0 이하의 값일 경우,오류 메시지를 출력하고 함수를 종료한다. 
 		if position <= 0:
 			print("Error: position은 0 이하가 될 수 없음!")
 			return
-
+        
+        # 2. position이 현재 리스트의 크기(num_of_data)보다 크면 append() 함수를 호출하여 리스트의 맨 마지막에 new_data를 삽입한다. 
 		if position > self.num_of_data:
 			self.append(new_data)
 			return
-
+        
+        # 3. new_data를 저장할 새로운 노드를 생성한다.
 		new_node = Node(new_data)
 
+        # 4. 위치를 맨 앞으로 세팅하고, position의 횟수만큼 리스트를 순회하며 새로운 노드를 삽입할 위치를 찾는다.
 		self.current = self.head
 		self.before = None
 		for _ in range(position):
 			self.before = self.current
 			self.current = self.current.next
-
+            
+        # 5. before 노드와 새로운 노드를 연결하고, 새로운 노드와 current 노드를 연결해 position의 위치에 new_node를 삽입한다. 
 		self.before.next = new_node
 		new_node.next = self.current
-
+        
+        # 6. new_data가 삽입되었으므로, 리스트의 길이(num_of_data)를 1 증가시킨다.
 		self.num_of_data += 1
 
 	# delete 메소드 (delete - current 노드 삭제, 인접 노드의 current, next 변경, 데이터 개수 변경)
@@ -64,18 +70,24 @@ class LinkedList:
 			self.num_of_data -= 1
 
 			return pop_data
-    
-	# remove 메소드
+		
+    	# remove 메소드
 	def remove(self, key):
-		current = self.head
+        # 1. 현재 위치를 맨 앞으로 세팅한 후, found, position 변수 선언
+		current = self.head 
 		prev = None
 		found = False
 		position = 0
+		found_num=0
 		
+		# 2. 리스트를 순회하면서 key값과 같은 값을 가진 노드를 찾아 해당 position+1번째 원소(key)를 삭제한다고 출력
 		while current is not None:
 			if current.data == key:
 				found = True
-				print(f'{position+1}번째 원소({key})를 삭제합니다.')
+				found_num += 1
+				print(f'{position + found_num -1}번째 원소({key})를 삭제합니다.')
+                
+                # 3. key값과 같은 값을 가진 노드를 삭제                
 				if current == self.head:
 					self.head = current.next
 					current = self.head
@@ -84,10 +96,12 @@ class LinkedList:
 					current = current.next
 					
 			else:
+				# 4. 다음 노드로 이동
 				prev = current
 				current = current.next
 				position += 1
-		
+                
+       # 5. key값을 가지는 노드가 없을 경우 출력
 		if not found:
 			print(f'해당하는 원소가 없습니다.')
 
