@@ -110,7 +110,7 @@ class LinkedList:
 		position = 0
 		found_num=0
 		
-		# 2. 리스트를 순회하면서 key값과 같은 값을 가진 노드를 찾아 해당 position+1번째 원소(key)를 삭제한다고 출력
+		# 2. 리스트를 순회하면서 key값과 같은 값을 가진 노드를 찾아 해당 원소(key)를 삭제한다고 출력
 		while current is not None:
 			if current.data == key:
 				found = True
