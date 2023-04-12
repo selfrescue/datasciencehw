@@ -56,20 +56,22 @@ class LinkedList:
         # 6. new_data가 삽입되었으므로, 리스트의 길이(num_of_data)를 1 증가시킨다.
 		self.num_of_data += 1
 
-	# delete 메소드 (delete - current 노드 삭제, 인접 노드의 current, next 변경, 데이터 개수 변경)
+	# 수정한 delete 메소드 (delete - current 노드 삭제, 인접 노드의 current, next 변경, 데이터 개수 변경)
 	def delete(self):
 		pop_data = self.current.data
 
 		if self.current is self.tail:
 			self.tail = self.before
-
-			# 중요 : current가 next가 아닌 before로 변경된다.
 			self.before.next = self.current.next
-			self.current = self.before 
+			self.current = self.before
 
-			self.num_of_data -= 1
+		else:
+			self.current = self.current.next
+			self.before.next = self.current
 
-			return pop_data
+		self.num_of_data -= 1
+
+		return pop_data
 		
     	# remove 메소드
 	def remove(self, key):
